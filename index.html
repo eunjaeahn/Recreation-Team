@@ -1,49 +1,337 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>워크샵 오락실</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>경영관리본부 MT – 워크샵 오락실</title>
+
+  <!-- 기본, 깔끔한 본문 폰트 (그림자 없음) -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root{
+      --bg:#0f1220;
+      --ink:#e9ecf4;
+      --muted:#afb7cd;
+      --line:#232843;
+      --card:#171b2e;
+      --card-soft:#151a2b;
+      --primary:#7aa2ff;
+      --accent:#72e4c2;
+      --radius:16px;
+
+      /* 팀 색상 */
+      --t1:#7aa2ff; --t1-bg:#1a2548;
+      --t2:#72e4c2; --t2-bg:#143336;
+      --t3:#ffd166; --t3-bg:#3a2e14;
+      --t4:#ff8fab; --t4-bg:#3a1f2a;
+      --t5:#a78bfa; --t5-bg:#2a2141;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:"Noto Sans KR", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple SD Gothic Neo", "맑은 고딕", sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 600px at 80% -10%, rgba(114,228,194,.12), transparent 60%),
+        radial-gradient(800px 400px at 10% 0%, rgba(122,162,255,.18), transparent 60%),
+        var(--bg);
+    }
+
+    .wrap{max-width:980px; margin:0 auto; padding:24px; padding-bottom:72px}
+
+    header.card{
+      padding:28px 24px;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+    }
+    .title{display:flex; align-items:center; gap:12px; flex-wrap:wrap}
+    .badge{
+      color:#0f1220; background:linear-gradient(90deg, var(--primary), var(--accent));
+      font-weight:800; padding:6px 10px; border-radius:999px; font-size:12px; letter-spacing:.3px
+    }
+    h1{margin:0; font-size:clamp(22px, 3.6vw, 32px); font-weight:800; letter-spacing:.2px}
+    .subtitle{margin:6px 0 0; color:var(--muted); font-size:clamp(14px, 2.2vw, 16px)}
+
+    .grid{display:grid; grid-template-columns:1fr; gap:16px; margin-top:18px}
+
+    .card{
+      border:1px solid var(--line);
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow:0 6px 20px rgba(0,0,0,.25);
+    }
+
+    /* 조 배정 카드 */
+    .assign{
+      display:grid; gap:16px
+    }
+    .row{display:flex; gap:10px; flex-wrap:wrap}
+    label{font-weight:700; font-size:14px}
+    .input{
+      flex:1 1 260px;
+      background:var(--card-soft); color:var(--ink);
+      border:1px solid var(--line);
+      border-radius:12px; padding:12px 14px; font-size:16px;
+      outline:none;
+    }
+    .btn{
+      appearance:none; border:none; cursor:pointer;
+      background:var(--primary); color:#0f1220;
+      padding:12px 16px; border-radius:12px; font-weight:800; font-size:16px;
+    }
+    .btn.secondary{
+      background:transparent; color:var(--muted); border:1px solid var(--line)
+    }
+    .hint{color:var(--muted); font-size:13px}
+
+    .result{
+      display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+      border:1px solid var(--line); border-radius:12px; padding:14px 16px; background:var(--card-soft)
+    }
+    .who{margin:0; font-weight:800; font-size:clamp(16px, 2.6vw, 18px)}
+    .pill{
+      padding:10px 14px; border-radius:999px; font-weight:800; font-size:clamp(16px, 3vw, 18px);
+      display:inline-flex; align-items:center; gap:8px; border:1px solid transparent
+    }
+    .pill .dot{width:8px; height:8px; border-radius:50%}
+
+    /* 팀 색상 테마 */
+    .t1{ color:var(--t1); background:var(--t1-bg); border-color:rgba(122,162,255,.5) }
+    .t1 .dot{ background:var(--t1) }
+    .t2{ color:var(--t2); background:var(--t2-bg); border-color:rgba(114,228,194,.5) }
+    .t2 .dot{ background:var(--t2) }
+    .t3{ color:#ffd166; background:var(--t3-bg); border-color:rgba(255,209,102,.5) }
+    .t3 .dot{ background:#ffd166 }
+    .t4{ color:#ff8fab; background:var(--t4-bg); border-color:rgba(255,143,171,.5) }
+    .t4 .dot{ background:#ff8fab }
+    .t5{ color:#c2b3ff; background:var(--t5-bg); border-color:rgba(167,139,250,.5) }
+    .t5 .dot{ background:#c2b3ff }
+
+    .status{font-size:13px; color:var(--muted)}
+    .status strong{color:var(--ink)}
+
+    /* 게임 아코디언 */
+    .games h2{margin:0 0 12px; font-size:clamp(18px, 3vw, 22px)}
+    details{
+      border:1px solid var(--line); border-radius:12px; background:#151a2b; overflow:hidden
+    }
+    details+details{margin-top:10px}
+    summary{
+      list-style:none; cursor:pointer; padding:16px 18px; font-weight:800;
+      display:flex; align-items:center; justify-content:space-between; gap:12px
+    }
+    summary::-webkit-details-marker{display:none}
+    .tag{ color:#0f1220; background:var(--accent); border-radius:999px; padding:4px 10px; font-size:12px; font-weight:800 }
+    .chev{ width:10px; height:10px; border-right:2px solid var(--muted); border-bottom:2px solid var(--muted); transform:rotate(-45deg); transition:.2s; opacity:.9 }
+    details[open] .chev{ transform:rotate(45deg) }
+    .panel{ padding:0 18px 16px; color:var(--muted); line-height:1.7; font-size:clamp(14px, 2.5vw, 16px); border-top:1px solid var(--line); background:linear-gradient(180deg, rgba(255,255,255,.01), transparent) }
+    .panel ul{ padding-left:18px; margin:10px 0 0 }
+    .panel li{ margin:4px 0 }
+
+    footer{margin-top:28px; color:var(--muted); font-size:13px; text-align:center}
+  </style>
 </head>
 <body>
-  <h1>경영관리본부 MT 레크리에이션</h1>
-  <p>참가자 이름을 입력하면 랜덤으로 조가 배정됩니다.</p>
+  <div class="wrap">
+    <!-- 헤더 -->
+    <header class="card">
+      <div class="title">
+        <span class="badge">워크샵 오락실</span>
+        <h1>경영관리본부 MT 레크리에이션</h1>
+      </div>
+      <p class="subtitle">즐겁게 놀고, 가볍게 경쟁하고, 자연스럽게 친해지는 시간!</p>
+    </header>
 
-  <!-- 이름 입력창 -->
-  <input type="text" id="nameInput" placeholder="이름을 입력하세요">
-  <button onclick="getTeam()">조 배정 받기</button>
+    <section class="grid">
+      <!-- 조 배정 카드 -->
+      <div class="card assign">
+        <div class="row" aria-label="이름 입력 및 배정">
+          <label for="name" class="sr-only">이름</label>
+          <input id="name" class="input" type="text" placeholder="이름을 입력하세요" autocomplete="off">
+          <button id="assignBtn" class="btn">조 배정 받기</button>
+          <button id="resetBtn" class="btn secondary" title="이름/배정 초기화">초기화</button>
+        </div>
+        <div class="hint">※ 1~5조 중 하나로 랜덤 배정되며, 조당 최대 5명 기준으로 배정합니다.</div>
 
-  <!-- 결과 표시 -->
-  <p id="result"></p>
+        <div class="result" role="status" aria-live="polite">
+          <p class="who"><strong id="who">참가자</strong>님의 배정 결과</p>
+          <span id="teamPill" class="pill t1"><span class="dot"></span><span id="teamText">배정 대기</span></span>
+        </div>
+        <div class="status" id="statusLine">이름을 입력한 뒤 <strong>조 배정 받기</strong>를 눌러주세요.</div>
+      </div>
+
+      <!-- 게임 안내 -->
+      <div class="card games">
+        <h2>게임 안내 (총 5가지)</h2>
+
+        <details>
+          <summary>① 네 글자 게임 <span class="tag">팀전</span> <i class="chev"></i></summary>
+          <div class="panel">
+            <ul>
+              <li>사회자 주제에 맞춰 <strong>정확히 네 글자</strong> 단어를 말하기.</li>
+              <li>팀 릴레이 30초, 같은 단어 반복 금지, <em>패스 1회</em>.</li>
+              <li>생존 팀 1점씩, 합산 고득점 팀 승리.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details>
+          <summary>② 쿠팡 가격 맞히기 <span class="tag">퀴즈</span> <i class="chev"></i></summary>
+          <div class="panel">
+            <ul>
+              <li>제시 상품의 <strong>실제 판매가 근사치</strong> 순으로 점수(3 / 2 / 1점).</li>
+              <li>가격 공개 전 최종 변경 1회 가능.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details>
+          <summary>③ 초성 퀴즈 <span class="tag">스피드</span> <i class="chev"></i></summary>
+          <div class="panel">
+            <ul>
+              <li>제시어 <strong>초성</strong>만 보고 정답 맞히기.</li>
+              <li>대표자만 콜, 오답 시 5초 대기.</li>
+              <li>보너스 라운드 정답 2점.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details>
+          <summary>④ 고요 속의 외침 <span class="tag">액티브</span> <i class="chev"></i></summary>
+          <div class="panel">
+            <ul>
+              <li>헤드폰 착용자, 입모양/제스처로 제시어 맞히기.</li>
+              <li>제한 60초, 정답 1개당 1점, 패스 2회.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details>
+          <summary>⑤ 노래 맞히기 <span class="tag">음악</span> <i class="chev"></i></summary>
+          <div class="panel">
+            <ul>
+              <li>인트로/후렴 5초 듣고 <strong>제목</strong> 맞히기(가수까지 맞히면 +1).</li>
+              <li>오답 시 5초 페널티, 허밍 라운드 포함.</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <footer>© 2025 경영관리본부 | Workshop Arcade</footer>
+  </div>
 
   <script>
-    async function getTeam() {
-      const name = document.getElementById("nameInput").value.trim();
-      if (!name) {
-        alert("이름을 입력해주세요!");
+    // ===== 설정: 본인의 Google Apps Script 웹 앱 URL을 넣으세요 =====
+    const API_URL = "https://script.google.com/macros/s/AKfycbxK0l7gbobMY5y88RVdqL4GfjOdYAyM_cwx3twLtTOb0GhtjD9zoxOKPsDqcTRAKSoBOg/exec"; // 예: https://script.google.com/macros/s/AKfycbx.../exec
+
+    // ===== 엘리먼트 =====
+    const nameInput = document.getElementById("name");
+    const assignBtn = document.getElementById("assignBtn");
+    const resetBtn  = document.getElementById("resetBtn");
+    const who       = document.getElementById("who");
+    const teamPill  = document.getElementById("teamPill");
+    const teamText  = document.getElementById("teamText");
+    const statusLine= document.getElementById("statusLine");
+
+    // ===== 도우미 =====
+    const TEAM_KEY = "mt_team_number";
+    const NAME_KEY = "mt_user_name";
+
+    function setPill(teamNum){
+      const cls = ["t1","t2","t3","t4","t5"];
+      teamPill.classList.remove(...cls);
+      const t = Number(teamNum);
+      teamPill.classList.add(cls[(t-1)%5]);
+      teamText.textContent = `${t}조`;
+    }
+    function setLoading(on){
+      assignBtn.disabled = on;
+      assignBtn.textContent = on ? "배정 중..." : "조 배정 받기";
+      statusLine.textContent = on ? "배정 서버와 통신 중입니다..." : statusLine.textContent;
+    }
+    function showSaved(){
+      const savedName = localStorage.getItem(NAME_KEY);
+      const savedTeam = localStorage.getItem(TEAM_KEY);
+      if(savedName){ who.textContent = savedName; nameInput.value = savedName; }
+      if(savedTeam){ setPill(savedTeam); statusLine.innerHTML = `이 기기에는 <strong>${savedTeam}조</strong>가 저장되어 있습니다.`; }
+    }
+
+    // URL ?name=홍길동 처리
+    const params = new URLSearchParams(location.search);
+    const urlName = params.get("name");
+    if(urlName){
+      localStorage.setItem(NAME_KEY, urlName);
+    }
+
+    // 초기 렌더
+    showSaved();
+
+    // ===== 이벤트 =====
+    assignBtn.addEventListener("click", async () => {
+      const name = (nameInput.value || "").trim();
+      if(!name){ alert("이름을 입력해주세요."); nameInput.focus(); return; }
+
+      // 저장된 이름과 다르면 초기화
+      const prevName = localStorage.getItem(NAME_KEY);
+      if(prevName && prevName !== name){
+        localStorage.removeItem(TEAM_KEY);
+      }
+      localStorage.setItem(NAME_KEY, name);
+      who.textContent = name;
+
+      // 이미 팀이 저장돼 있으면 서버 호출 생략(원하면 주석 처리)
+      const savedTeam = localStorage.getItem(TEAM_KEY);
+      if(savedTeam){
+        statusLine.innerHTML = `이미 <strong>${savedTeam}조</strong>로 저장되어 있습니다. 초기화 후 재배정할 수 있어요.`;
+        setPill(savedTeam);
         return;
       }
 
-      // 👉 여기에 본인의 Google Apps Script URL 넣기
-      const apiUrl = "https://script.google.com/macros/s/AKfycbxK0l7gbobMY5y88RVdqL4GfjOdYAyM_cwx3twLtTOb0GhtjD9zoxOKPsDqcTRAKSoBOg/exec";
+      if(!API_URL || API_URL === "API_URL_HERE"){
+        alert("API URL이 설정되지 않았습니다. Apps Script 웹 앱 URL을 설정하세요.");
+        return;
+      }
 
-      try {
-        const res = await fetch(apiUrl + "?name=" + encodeURIComponent(name));
+      try{
+        setLoading(true);
+        const res  = await fetch(`${API_URL}?name=${encodeURIComponent(name)}`, { method:"GET" });
         const data = await res.json();
 
-        if (data.team) {
-          document.getElementById("result").textContent = 
-            `${name}님은 ${data.team}조에 배정되었습니다 🎉`;
-        } else if (data.error) {
-          document.getElementById("result").textContent = 
-            `배정 실패: ${data.error}`;
+        if(data.team){
+          const team = String(data.team);
+          localStorage.setItem(TEAM_KEY, team);
+          setPill(team);
+          statusLine.innerHTML = `배정 완료: <strong>${team}조</strong> 🎉 (이 기기에 저장되었습니다)`;
+        }else if(data.error){
+          teamText.textContent = "배정 실패";
+          statusLine.textContent = `배정 실패: ${data.error}`;
+        }else{
+          teamText.textContent = "배정 실패";
+          statusLine.textContent = "알 수 없는 응답입니다.";
         }
-      } catch (err) {
-        document.getElementById("result").textContent = "서버 연결 오류 😢";
+      }catch(err){
         console.error(err);
+        teamText.textContent = "배정 실패";
+        statusLine.textContent = "서버 연결 오류가 발생했습니다.";
+      }finally{
+        setLoading(false);
       }
-    }
+    });
+
+    resetBtn.addEventListener("click", () => {
+      localStorage.removeItem(TEAM_KEY);
+      localStorage.removeItem(NAME_KEY);
+      nameInput.value = "";
+      who.textContent = "참가자";
+      teamPill.className = "pill t1";
+      teamPill.innerHTML = '<span class="dot"></span><span id="teamText">배정 대기</span>';
+      statusLine.textContent = "이름을 입력한 뒤 조 배정 받기를 눌러주세요.";
+    });
   </script>
 </body>
 </html>
-
