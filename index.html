@@ -1,149 +1,314 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>워크샵 오락실 - 경영관리본부 MT</title>
-  <!-- 핑크퐁 아기상어 서체 -->
-  <link href="https://hangeul.pstatic.net/hangeul_static/css/Pinkfong_BabyShark.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>경영관리본부 MT – 워크샵 오락실</title>
+
+  <!-- 깔끔한 가독성 폰트 (텍스트 그림자 사용 안 함) -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet" />
+
   <style>
-    body {
-      margin: 0;
-      font-family: 'Pinkfong Baby Shark', sans-serif;
-      background: linear-gradient(to bottom, #001133, #000010);
-      color: white;
-      text-align: center;
+    :root{
+      --bg:#0f1220;          /* 배경 */
+      --card:#171b2e;        /* 카드 배경 */
+      --ink:#e9ecf4;         /* 본문 글자 */
+      --muted:#b9c0d4;       /* 보조 글자 */
+      --primary:#7aa2ff;     /* 포인트 */
+      --accent:#72e4c2;      /* 보조 포인트 */
+      --line:#232843;        /* 경계선 */
+      --radius:16px;
     }
 
-    header {
-      padding: 30px 15px;
-      background: linear-gradient(to right, #ff9a9e, #fad0c4);
-      border-bottom: 3px solid #ffe600;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:"Noto Sans KR", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple SD Gothic Neo", "맑은 고딕", sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 600px at 80% -10%, rgba(114,228,194,.15), transparent 60%),
+        radial-gradient(800px 400px at 10% 0%, rgba(122,162,255,.20), transparent 60%),
+        var(--bg);
     }
 
-    header h1 {
-      font-size: 6vw; /* 화면 너비 기반 크기 */
-      margin: 0;
-      color: #fff;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+    .wrap{
+      max-width:980px;
+      padding:24px;
+      margin:0 auto 64px;
     }
 
-    header h2 {
-      font-size: 4vw;
-      margin: 10px 0 0 0;
-      color: #ffe600;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+    header{
+      padding:28px 24px;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.0));
+      backdrop-filter:saturate(120%);
+    }
+    .title{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .badge{
+      color:#0f1220;
+      background:linear-gradient(90deg, var(--primary), var(--accent));
+      font-weight:700;
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      letter-spacing:.5px;
+    }
+    h1{
+      margin:0;
+      font-size:clamp(22px, 3.5vw, 32px);
+      font-weight:800;
+      letter-spacing:.2px;
+    }
+    .subtitle{
+      margin:6px 0 0;
+      color:var(--muted);
+      font-size:clamp(14px, 2.2vw, 16px);
     }
 
-    .welcome {
-      margin: 30px auto;
-      font-size: 3.5vw;
-      color: #ffde59;
-      text-shadow: 1px 1px 4px black;
-      max-width: 90%;
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:16px;
     }
 
-    .team-box {
-      margin: 15px auto;
-      padding: 15px;
-      width: 80%;
-      max-width: 350px;
-      background: #ffb6c1cc;
-      border: 2px solid #fff;
-      border-radius: 15px;
-      font-size: 5vw;
-      color: #fff;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+    .card{
+      border:1px solid var(--line);
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow:0 6px 20px rgba(0,0,0,.25);
     }
 
-    .games {
-      margin: 30px auto;
-      max-width: 800px;
-      padding: 15px;
+    /* 내 조 안내 */
+    .team{
+      display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    }
+    .team h2{
+      margin:0;
+      font-size:clamp(18px, 3vw, 22px);
+    }
+    .pill{
+      background:rgba(122,162,255,.15);
+      border:1px solid rgba(122,162,255,.4);
+      color:var(--primary);
+      padding:10px 14px;
+      border-radius:10px;
+      font-weight:700;
+      font-size:clamp(16px, 3.2vw, 18px);
+    }
+    .note{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:13px;
     }
 
-    .games h3 {
-      font-size: 5vw;
-      margin-bottom: 20px;
-      color: #ffe600;
-      text-shadow: 2px 2px 6px black;
+    /* 게임 안내 (아코디언) */
+    .games h2{
+      margin:0 0 12px;
+      font-size:clamp(18px, 3vw, 22px);
+    }
+    details{
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:#151a2b;
+      overflow:hidden;
+    }
+    details + details{ margin-top:10px }
+    summary{
+      list-style:none;
+      cursor:pointer;
+      padding:16px 18px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      font-weight:700;
+      color:var(--ink);
+    }
+    summary::-webkit-details-marker{ display:none }
+    .tag{
+      color:#0f1220;
+      background:var(--accent);
+      border-radius:999px;
+      padding:4px 10px;
+      font-size:12px;
+      font-weight:800;
+    }
+    .chevron{
+      width:10px; height:10px;
+      border-right:2px solid var(--muted);
+      border-bottom:2px solid var(--muted);
+      transform:rotate(-45deg);
+      transition:.2s;
+      flex:0 0 auto;
+      opacity:.9;
+    }
+    details[open] .chevron{ transform:rotate(45deg) }
+    .panel{
+      padding:0 18px 16px 18px;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:clamp(14px, 2.5vw, 16px);
+      border-top:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.01), transparent);
+    }
+    .panel ul{ padding-left:18px; margin:10px 0 0 }
+    .panel li{ margin:4px 0 }
+
+    footer{
+      margin-top:28px;
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
+    /* 버튼 (필요 시) */
+    .btn{
+      appearance:none; border:none; cursor:pointer;
+      padding:10px 14px; border-radius:10px; font-weight:700;
+      color:#0f1220; background:var(--primary);
     }
-
-    ul li {
-      font-size: 4vw;
-      margin: 12px 0;
-      padding: 12px;
-      background: #fff3b0cc;
-      border: 2px solid #ff6f91;
-      border-radius: 10px;
-      color: #333;
-      font-weight: bold;
-      transition: transform 0.2s, background 0.3s;
-    }
-
-    ul li:hover {
-      transform: scale(1.03);
-      background: #ffe0e9;
-    }
-
-    footer {
-      margin-top: 30px;
-      padding: 10px;
-      border-top: 2px solid #ffe600;
-      font-size: 2.5vw;
-      color: #aaa;
-    }
-
-    /* 모바일 대응 */
-    @media (max-width: 600px) {
-      header h1 { font-size: 8vw; }
-      header h2 { font-size: 5vw; }
-      .welcome { font-size: 4.5vw; }
-      .team-box { font-size: 6vw; }
-      .games h3 { font-size: 6vw; }
-      ul li { font-size: 5vw; }
-      footer { font-size: 3.5vw; }
-    }
+    .btn.alt{ background:transparent; color:var(--muted); border:1px solid var(--line) }
   </style>
 </head>
 <body>
-  <header>
-    <h1>경영관리본부</h1>
-    <h2>워크샵 오락실 🎮</h2>
-  </header>
+  <div class="wrap">
+    <header class="card">
+      <div class="title">
+        <span class="badge">워크샵 오락실</span>
+        <h1>경영관리본부 MT 레크리에이션</h1>
+      </div>
+      <p class="subtitle">즐겁게 놀고, 가볍게 경쟁하고, 자연스럽게 친해지는 시간!</p>
+    </header>
 
-  <section class="welcome">
-    <p>✨ 환영합니다! 경영관리본부 MT 레크리에이션 ✨</p>
-    <p>오늘은 팀별로 함께 웃고 즐기며 협력과 도전을 나눠봅시다!</p>
-  </section>
+    <section class="grid">
+      <!-- 내 조 안내 -->
+      <div class="card">
+        <div class="team">
+          <h2><strong id="displayName">참가자</strong>님의 배정 결과</h2>
+          <div class="pill" id="teamPill">배정 중...</div>
+        </div>
+        <p class="note">※ 이 기기에서 한 번 배정되면 자동 저장됩니다. (새로고침해도 유지)</p>
+      </div>
 
-  <section class="team-box">
-    <p id="team">당신은 <strong></strong>조입니다 🎉</p>
-  </section>
+      <!-- 게임 안내 (아코디언) -->
+      <div class="card games">
+        <h2>게임 안내 (총 5가지)</h2>
 
-  <section class="games">
-    <h3>오늘의 게임 (총 5가지)</h3>
-    <ul>
-      <li>① 네 글자 게임</li>
-      <li>② 쿠팡 가격 맞히기</li>
-      <li>③ 초성 퀴즈</li>
-      <li>④ 고요 속의 외침</li>
-      <li>⑤ 노래 맞히기</li>
-    </ul>
-  </section>
+        <details>
+          <summary>
+            ① 네 글자 게임
+            <span class="tag">팀전</span>
+            <span class="chevron"></span>
+          </summary>
+          <div class="panel">
+            <ul>
+              <li>사회자가 제시하는 주제(예: 음식, 영화, 속담)에 맞춰 <strong>정확히 네 글자</strong> 단어를 말합니다.</li>
+              <li>한 팀당 30초 릴레이. 같은 단어 반복 금지, 머뭇거리면 패스 1회.</li>
+              <li>라운드마다 생존 팀에 1점, 최종 점수 합산으로 순위 결정.</li>
+            </ul>
+          </div>
+        </details>
 
-  <footer>
-    © 2025 경영관리본부 MT Recreation | 워크샵 오락실
-  </footer>
+        <details>
+          <summary>
+            ② 쿠팡 가격 맞히기
+            <span class="tag">퀴즈</span>
+            <span class="chevron"></span>
+          </summary>
+          <div class="panel">
+            <ul>
+              <li>화면에 제시되는 상품의 <strong>실제 판매가</strong>를 팀별로 추정해 작성합니다.</li>
+              <li><strong>근사치 순</strong>으로 점수: 1등 3점, 2등 2점, 3등 1점.</li>
+              <li>가격 공개 전 마지막 변경 1회 가능.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            ③ 초성 퀴즈
+            <span class="tag">스피드</span>
+            <span class="chevron"></span>
+          </summary>
+          <div class="panel">
+            <ul>
+              <li>제시어의 <strong>초성</strong>만 보고 정답을 맞히는 라운드.</li>
+              <li>정답 외침은 팀 대표만 가능, 오답 시 5초간 대기.</li>
+              <li>정답 1점, 보너스 라운드(난이도 ↑)는 2점.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            ④ 고요 속의 외침
+            <span class="tag">액티브</span>
+            <span class="chevron"></span>
+          </summary>
+          <div class="panel">
+            <ul>
+              <li>헤드폰을 낀 팀원이 입모양만 보고 제시어를 맞힙니다 (제스처 허용, 글자 수 힌트 허용).</li>
+              <li>제한시간 60초, 정답 1개당 1점. 패스 2회.</li>
+              <li>소리 지르기 주의! 다른 팀 방해 금지.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            ⑤ 노래 맞히기
+            <span class="tag">음악</span>
+            <span class="chevron"></span>
+          </summary>
+          <div class="panel">
+            <ul>
+              <li>인트로/후렴 구간 5초 듣고 <strong>제목</strong>을 맞힙니다. (가수까지 맞히면 추가 +1)</li>
+              <li>버저/손들기 선착순. 오답 시 5초 페널티.</li>
+              <li>특별 라운드: <em>허밍</em>으로만 들려주기.</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <footer>
+      © 2025 경영관리본부 | Workshop Arcade
+    </footer>
+  </div>
 
   <script>
-    // 조 배정 (1조~5조 랜덤)
-    const teamNumber = Math.floor(Math.random() * 5) + 1;
-    document.getElementById("team").innerHTML = `당신은 <strong>${teamNumber}조</strong>입니다 🎉`;
+    // ===== 참가자 이름 간단 저장 (선택 사항) =====
+    // URL에 ?name=이름 이 있으면 표시 & 저장
+    const params = new URLSearchParams(location.search);
+    const urlName = params.get("name");
+    const savedName = localStorage.getItem("mt_name");
+    const displayName = document.getElementById("displayName");
+
+    if (urlName) {
+      localStorage.setItem("mt_name", urlName);
+      displayName.textContent = urlName;
+    } else if (savedName) {
+      displayName.textContent = savedName;
+    }
+
+    // ===== 팀 배정 (1~5조). 기기당 1회 배정 후 저장 =====
+    const TEAM_KEY = "mt_team_2025";
+    function pickTeam(){
+      // 1~5 랜덤
+      return Math.floor(Math.random() * 5) + 1;
+    }
+    let team = localStorage.getItem(TEAM_KEY);
+    if(!team){
+      team = String(pickTeam());
+      localStorage.setItem(TEAM_KEY, team);
+    }
+    document.getElementById("teamPill").textContent = team + "조";
   </script>
 </body>
 </html>
