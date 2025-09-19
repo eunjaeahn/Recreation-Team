@@ -3,66 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <title>워크샵 오락실 - 경영관리본부 MT</title>
-  <!-- 나눔스퀘어 폰트 -->
-  <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css" rel="stylesheet">
+  <!-- 핑크퐁 아기상어 서체 -->
+  <link href="https://hangeul.pstatic.net/hangeul_static/css/Pinkfong_BabyShark.css" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'NanumSquare', sans-serif;
-      background: linear-gradient(to bottom, #000010, #001133, #000010);
-      background-size: cover;
+      font-family: 'Pinkfong Baby Shark', sans-serif;
+      background: linear-gradient(to bottom, #001133, #000010);
       color: white;
       text-align: center;
     }
 
     header {
-      padding: 40px 20px;
-      background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
-      border-bottom: 3px solid gold;
+      padding: 30px 15px;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      border-bottom: 3px solid #ffe600;
     }
 
     header h1 {
-      font-size: 48px;
+      font-size: 6vw; /* 화면 너비 기반 크기 */
       margin: 0;
-      color: #32ff7e;
-      text-shadow: 2px 2px 6px black;
+      color: #fff;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
     }
 
     header h2 {
-      font-size: 28px;
+      font-size: 4vw;
       margin: 10px 0 0 0;
-      color: #4facfe;
-      text-shadow: 2px 2px 6px black;
+      color: #ffe600;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
     }
 
     .welcome {
-      margin: 40px auto;
-      font-size: 24px;
+      margin: 30px auto;
+      font-size: 3.5vw;
       color: #ffde59;
       text-shadow: 1px 1px 4px black;
+      max-width: 90%;
     }
 
     .team-box {
-      margin: 20px auto;
-      padding: 20px;
-      width: 300px;
-      background: rgba(0,0,50,0.7);
-      border: 2px solid #00ffea;
-      border-radius: 10px;
-      font-size: 28px;
+      margin: 15px auto;
+      padding: 15px;
+      width: 80%;
+      max-width: 350px;
+      background: #ffb6c1cc;
+      border: 2px solid #fff;
+      border-radius: 15px;
+      font-size: 5vw;
       color: #fff;
-      text-shadow: 2px 2px 6px black;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
     }
 
     .games {
-      margin: 50px auto;
+      margin: 30px auto;
       max-width: 800px;
-      padding: 20px;
+      padding: 15px;
     }
 
     .games h3 {
-      font-size: 32px;
-      margin-bottom: 30px;
+      font-size: 5vw;
+      margin-bottom: 20px;
       color: #ffe600;
       text-shadow: 2px 2px 6px black;
     }
@@ -73,27 +74,39 @@
     }
 
     ul li {
-      font-size: 24px;
-      margin: 20px 0;
-      padding: 15px;
-      background: rgba(0,0,50,0.7);
-      border: 2px solid #00ffea;
+      font-size: 4vw;
+      margin: 12px 0;
+      padding: 12px;
+      background: #fff3b0cc;
+      border: 2px solid #ff6f91;
       border-radius: 10px;
-      transition: transform 0.3s, background 0.3s;
-      cursor: pointer;
+      color: #333;
+      font-weight: bold;
+      transition: transform 0.2s, background 0.3s;
     }
 
     ul li:hover {
-      transform: scale(1.05);
-      background: rgba(0,50,100,0.9);
+      transform: scale(1.03);
+      background: #ffe0e9;
     }
 
     footer {
-      margin-top: 50px;
-      padding: 20px;
-      border-top: 2px solid gold;
-      font-size: 14px;
+      margin-top: 30px;
+      padding: 10px;
+      border-top: 2px solid #ffe600;
+      font-size: 2.5vw;
       color: #aaa;
+    }
+
+    /* 모바일 대응 */
+    @media (max-width: 600px) {
+      header h1 { font-size: 8vw; }
+      header h2 { font-size: 5vw; }
+      .welcome { font-size: 4.5vw; }
+      .team-box { font-size: 6vw; }
+      .games h3 { font-size: 6vw; }
+      ul li { font-size: 5vw; }
+      footer { font-size: 3.5vw; }
     }
   </style>
 </head>
@@ -104,12 +117,11 @@
   </header>
 
   <section class="welcome">
-    <p>✨ 환영합니다! 경영관리본부 MT 레크리에이션에 오신 것을 환영합니다 ✨</p>
-    <p>오늘은 팀별로 즐겁게 게임을 하며 협력과 도전을 나눠볼 거예요!</p>
+    <p>✨ 환영합니다! 경영관리본부 MT 레크리에이션 ✨</p>
+    <p>오늘은 팀별로 함께 웃고 즐기며 협력과 도전을 나눠봅시다!</p>
   </section>
 
   <section class="team-box">
-    <!-- 조 배정 (랜덤) -->
     <p id="team">당신은 <strong></strong>조입니다 🎉</p>
   </section>
 
