@@ -28,27 +28,43 @@
     .wrap{max-width:980px; margin:0 auto; padding:24px 24px 72px}
     .card{border:1px solid var(--line); background:var(--card); border-radius:16px; padding:20px; box-shadow:0 6px 20px rgba(0,0,0,.25)}
 
+    /* 헤더 카드 */
+    header.card {
+      padding: 36px 28px; /* 상하 여백 늘림 */
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+    }
     header.card .badge{
       color:#0f1220;
       background:linear-gradient(90deg, var(--primary), var(--accent));
       font-weight:800; padding:6px 10px;
       border-radius:999px; font-size:12px
     }
-    .title-lines{margin:0;}
+    .title-lines{margin:12px 0 0;}
     .title-lines .line1{
       display:block;
-      font-size:clamp(22px, 3.6vw, 32px);
+      font-size:clamp(24px, 3.8vw, 34px);
       font-weight:800;
       letter-spacing:.2px;
+      line-height:1.3;
     }
     .title-lines .line2{
       display:block;
-      font-size:clamp(18px, 3.0vw, 26px);
-      font-weight:800;
+      font-size:clamp(18px, 3vw, 26px);
+      font-weight:700;
       letter-spacing:.2px;
-      color:var(--ink);
+      color:var(--muted); /* 연한 색으로 보조 강조 */
+      margin-top:4px;
+      line-height:1.4;
     }
-    .subtitle{margin:6px 0 0; color:var(--muted); font-size:clamp(14px, 2.2vw, 16px)}
+    .subtitle {
+      margin:18px 0 0;
+      color:var(--muted);
+      font-size:clamp(14px, 2.2vw, 16px);
+      line-height:1.6;
+    }
+
     .grid{display:grid; gap:16px; margin-top:18px}
 
     .row{display:flex; gap:10px; flex-wrap:wrap}
