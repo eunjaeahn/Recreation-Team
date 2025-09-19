@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>경영관리본부 MT – 워크샵 오락실</title>
+  <title>경영관리본부 MT – 레크리에이션</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;800&display=swap" rel="stylesheet"/>
   <style>
     :root{
@@ -16,14 +16,38 @@
       --t5:#a78bfa; --t5-bg:#2a2141;
     }
     *{box-sizing:border-box}
-    body{margin:0; font-family:"Noto Sans KR",system-ui,sans-serif; color:var(--ink);
-      background: radial-gradient(1200px 600px at 80% -10%, rgba(114,228,194,.12), transparent 60%),
-                  radial-gradient(800px 400px at 10% 0%, rgba(122,162,255,.18), transparent 60%),
-                  var(--bg);}
+    body{
+      margin:0;
+      font-family:"Noto Sans KR",system-ui,sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 600px at 80% -10%, rgba(114,228,194,.12), transparent 60%),
+        radial-gradient(800px 400px at 10% 0%, rgba(122,162,255,.18), transparent 60%),
+        var(--bg);
+    }
     .wrap{max-width:980px; margin:0 auto; padding:24px 24px 72px}
     .card{border:1px solid var(--line); background:var(--card); border-radius:16px; padding:20px; box-shadow:0 6px 20px rgba(0,0,0,.25)}
-    header.card .badge{color:#0f1220; background:linear-gradient(90deg, var(--primary), var(--accent)); font-weight:800; padding:6px 10px; border-radius:999px; font-size:12px}
-    h1{margin:0; font-size:clamp(22px, 3.6vw, 32px); font-weight:800}
+
+    header.card .badge{
+      color:#0f1220;
+      background:linear-gradient(90deg, var(--primary), var(--accent));
+      font-weight:800; padding:6px 10px;
+      border-radius:999px; font-size:12px
+    }
+    .title-lines{margin:0;}
+    .title-lines .line1{
+      display:block;
+      font-size:clamp(22px, 3.6vw, 32px);
+      font-weight:800;
+      letter-spacing:.2px;
+    }
+    .title-lines .line2{
+      display:block;
+      font-size:clamp(18px, 3.0vw, 26px);
+      font-weight:800;
+      letter-spacing:.2px;
+      color:var(--ink);
+    }
     .subtitle{margin:6px 0 0; color:var(--muted); font-size:clamp(14px, 2.2vw, 16px)}
     .grid{display:grid; gap:16px; margin-top:18px}
 
@@ -40,7 +64,6 @@
     .pill{padding:10px 14px; border-radius:999px; font-weight:800; font-size:clamp(16px, 3vw, 18px);
       display:inline-flex; align-items:center; gap:8px; border:1px solid transparent}
     .pill .dot{width:8px; height:8px; border-radius:50%}
-
     .t1{ color:var(--t1); background:var(--t1-bg); border-color:rgba(122,162,255,.5) } .t1 .dot{ background:var(--t1) }
     .t2{ color:var(--t2); background:var(--t2-bg); border-color:rgba(114,228,194,.5) } .t2 .dot{ background:var(--t2) }
     .t3{ color:#ffd166; background:var(--t3-bg); border-color:rgba(255,209,102,.5) } .t3 .dot{ background:#ffd166 }
@@ -49,12 +72,14 @@
 
     details{border:1px solid var(--line); border-radius:12px; background:#151a2b; overflow:hidden}
     details+details{margin-top:10px}
-    summary{list-style:none; cursor:pointer; padding:16px 18px; font-weight:800; display:flex; align-items:center; justify-content:space-between; gap:12px}
+    summary{list-style:none; cursor:pointer; padding:16px 18px; font-weight:800;
+      display:flex; align-items:center; justify-content:space-between; gap:12px}
     summary::-webkit-details-marker{display:none}
     .tag{ color:#0f1220; background:var(--accent); border-radius:999px; padding:4px 10px; font-size:12px; font-weight:800 }
     .chev{ width:10px; height:10px; border-right:2px solid var(--muted); border-bottom:2px solid var(--muted); transform:rotate(-45deg); transition:.2s; opacity:.9 }
     details[open] .chev{ transform:rotate(45deg) }
-    .panel{ padding:0 18px 16px; color:var(--muted); line-height:1.7; font-size:clamp(14px, 2.5vw, 16px); border-top:1px solid var(--line); background:linear-gradient(180deg, rgba(255,255,255,.01), transparent) }
+    .panel{ padding:0 18px 16px; color:var(--muted); line-height:1.7; font-size:clamp(14px, 2.5vw, 16px);
+      border-top:1px solid var(--line); background:linear-gradient(180deg, rgba(255,255,255,.01), transparent) }
     .panel ul{ padding-left:18px; margin:10px 0 0 } .panel li{ margin:4px 0 }
 
     footer{margin-top:28px; color:var(--muted); font-size:13px; text-align:center}
@@ -64,7 +89,10 @@
   <div class="wrap">
     <header class="card">
       <span class="badge">워크샵 오락실</span>
-      <h1>경영관리본부 MT 레크리에이션</h1>
+      <h1 class="title-lines">
+        <span class="line1">경영관리본부 MT</span>
+        <span class="line2">레크리에이션</span>
+      </h1>
       <p class="subtitle">즐겁게 놀고, 가볍게 경쟁하고, 자연스럽게 친해지는 시간!</p>
     </header>
 
@@ -84,7 +112,7 @@
         <div class="hint" id="statusLine" style="margin-top:6px">이름을 입력한 뒤 <b>조 배정 확인</b>을 누르세요.</div>
       </div>
 
-      <!-- 게임 안내 (아코디언) -->
+      <!-- 게임 안내 -->
       <div class="card">
         <h2 style="margin:0 0 12px; font-size:clamp(18px, 3vw, 22px)">게임 안내 (총 5가지)</h2>
 
@@ -147,7 +175,7 @@
 
   <script>
     // === Apps Script 웹 앱 URL ===
-    const API_URL = "https://script.google.com/macros/s/AKfycbzqTyMhf7sQL5HMwoiD7x-5ASdka8EWNyBZ1JeE25-VR6c93iw9BYxfjeLtJIfhPESixQ/exec"; // 예: https://script.google.com/macros/s/AKfycbx.../exec
+    const API_URL = "https://script.google.com/macros/s/AKfycbzqTyMhf7sQL5HMwoiD7x-5ASdka8EWNyBZ1JeE25-VR6c93iw9BYxfjeLtJIfhPESixQ/exec"; // ← 본인 URL로 교체하세요
 
     const nameInput = document.getElementById("name");
     const assignBtn = document.getElementById("assignBtn");
@@ -163,7 +191,6 @@
       teamPill.classList.add(classes[(t-1)%5]);
       teamText.textContent = `${t}조`;
     }
-
     function setLoading(on){
       assignBtn.disabled = on;
       assignBtn.textContent = on ? "확인 중..." : "조 배정 확인";
@@ -206,4 +233,3 @@
   </script>
 </body>
 </html>
-
