@@ -2,13 +2,14 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>워크샵 오락실 - 게임 안내</title>
+  <title>워크샵 오락실 - 경영관리본부 MT</title>
+  <!-- 나눔스퀘어 폰트 -->
+  <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css" rel="stylesheet">
   <style>
     body {
       margin: 0;
       font-family: 'NanumSquare', sans-serif;
-      background: url('https://www.transparenttextures.com/patterns/stardust.png'), 
-                  linear-gradient(to bottom, #000010, #001133, #000010);
+      background: linear-gradient(to bottom, #000010, #001133, #000010);
       background-size: cover;
       color: white;
       text-align: center;
@@ -31,6 +32,25 @@
       font-size: 28px;
       margin: 10px 0 0 0;
       color: #4facfe;
+      text-shadow: 2px 2px 6px black;
+    }
+
+    .welcome {
+      margin: 40px auto;
+      font-size: 24px;
+      color: #ffde59;
+      text-shadow: 1px 1px 4px black;
+    }
+
+    .team-box {
+      margin: 20px auto;
+      padding: 20px;
+      width: 300px;
+      background: rgba(0,0,50,0.7);
+      border: 2px solid #00ffea;
+      border-radius: 10px;
+      font-size: 28px;
+      color: #fff;
       text-shadow: 2px 2px 6px black;
     }
 
@@ -83,8 +103,18 @@
     <h2>워크샵 오락실 🎮</h2>
   </header>
 
+  <section class="welcome">
+    <p>✨ 환영합니다! 경영관리본부 MT 레크리에이션에 오신 것을 환영합니다 ✨</p>
+    <p>오늘은 팀별로 즐겁게 게임을 하며 협력과 도전을 나눠볼 거예요!</p>
+  </section>
+
+  <section class="team-box">
+    <!-- 조 배정 (랜덤) -->
+    <p id="team">당신은 <strong></strong>조입니다 🎉</p>
+  </section>
+
   <section class="games">
-    <h3>게임 종류 (총 5가지)</h3>
+    <h3>오늘의 게임 (총 5가지)</h3>
     <ul>
       <li>① 네 글자 게임</li>
       <li>② 쿠팡 가격 맞히기</li>
@@ -97,5 +127,11 @@
   <footer>
     © 2025 경영관리본부 MT Recreation | 워크샵 오락실
   </footer>
+
+  <script>
+    // 조 배정 (1조~5조 랜덤)
+    const teamNumber = Math.floor(Math.random() * 5) + 1;
+    document.getElementById("team").innerHTML = `당신은 <strong>${teamNumber}조</strong>입니다 🎉`;
+  </script>
 </body>
 </html>
