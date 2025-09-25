@@ -113,11 +113,11 @@
     </header>
 
     <section class="grid">
-      <!-- 조 배정 -->
+      <!-- 팀 배정 -->
       <div class="card">
         <div class="row" aria-label="이름 입력 및 배정">
           <input id="name" class="input" type="text" placeholder="이름(실명)을 입력하세요" autocomplete="off">
-          <button id="assignBtn" class="btn">조 배정 확인</button>
+          <button id="assignBtn" class="btn">팀 배정 확인</button>
         </div>
         <div class="hint">※ 같은 이름은 항상 동일한 팀으로 유지됩니다. </div>
 
@@ -191,7 +191,7 @@
 
   <script>
     // === Apps Script 웹 앱 URL ===
-    const API_URL = "https://script.google.com/macros/s/AKfycbw7iySV3xzrQ2bj6DtiJ-fKE09Uy-BW2w1Hhj32dgcItDfoV_4UAnjzHf-W8toXQnDHpw/exec"; // ← 본인 URL로 교체하세요
+    const API_URL = "https://script.google.com/macros/s/AKfycbxh06i4uqw6PbgU1iId0ZkfVs-w9Fc4XHIGlrN_N-PGBGoM7kpt881_tLiWvTu132i1hQ/exec"; // ← 본인 URL로 교체하세요
 
     const nameInput = document.getElementById("name");
     const assignBtn = document.getElementById("assignBtn");
@@ -205,11 +205,11 @@
       teamPill.classList.remove(...classes);
       const t = Number(teamNum);
       teamPill.classList.add(classes[(t-1)%5]);
-      teamText.textContent = `${t}조`;
+      teamText.textContent = `${t}팀`;
     }
     function setLoading(on){
       assignBtn.disabled = on;
-      assignBtn.textContent = on ? "확인 중..." : "조 배정 확인";
+      assignBtn.textContent = on ? "확인 중..." : "팀 배정 확인";
     }
 
     async function fetchTeam(name){
@@ -232,8 +232,8 @@
         if (data.team){
           setPill(data.team);
           statusLine.innerHTML = data.existing
-            ? `이미 배정된 <strong>${data.team}조</strong>입니다.`
-            : `배정 완료: <strong>${data.team}조</strong> 🎉`;
+            ? `이미 배정된 <strong>${data.team}팀</strong>입니다.`
+            : `배정 완료: <strong>${data.team}팀</strong> 🎉`;
         } else {
           teamText.textContent = "배정 실패";
           statusLine.textContent = data.error || "알 수 없는 오류가 발생했습니다.";
@@ -249,6 +249,7 @@
   </script>
 </body>
 </html>
+
 
 
 
