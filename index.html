@@ -119,13 +119,13 @@
           <input id="name" class="input" type="text" placeholder="이름(실명)을 입력하세요" autocomplete="off">
           <button id="assignBtn" class="btn">조 배정 확인</button>
         </div>
-        <div class="hint">※ 같은 이름은 항상 동일한 조로 유지됩니다. </div>
+        <div class="hint">※ 같은 이름은 항상 동일한 팀으로 유지됩니다. </div>
 
         <div class="result" role="status" aria-live="polite" style="margin-top:12px">
           <p class="who"><strong id="who">참가자</strong>님의 배정 결과</p>
           <span id="teamPill" class="pill t1"><span class="dot"></span><span id="teamText">대기 중</span></span>
         </div>
-        <div class="hint" id="statusLine" style="margin-top:6px">이름을 입력한 뒤 <b>조 배정 확인</b>을 누르세요.</div>
+        <div class="hint" id="statusLine" style="margin-top:6px">이름을 입력한 뒤 <b>팀 배정 확인</b>을 누르세요.</div>
       </div>
 
       <!-- 게임 안내 -->
@@ -191,7 +191,7 @@
 
   <script>
     // === Apps Script 웹 앱 URL ===
-    const API_URL = "https://script.google.com/macros/s/AKfycbzqTyMhf7sQL5HMwoiD7x-5ASdka8EWNyBZ1JeE25-VR6c93iw9BYxfjeLtJIfhPESixQ/exec"; // ← 본인 URL로 교체하세요
+    const API_URL = "https://script.google.com/macros/s/AKfycbw7iySV3xzrQ2bj6DtiJ-fKE09Uy-BW2w1Hhj32dgcItDfoV_4UAnjzHf-W8toXQnDHpw/exec"; // ← 본인 URL로 교체하세요
 
     const nameInput = document.getElementById("name");
     const assignBtn = document.getElementById("assignBtn");
@@ -249,6 +249,7 @@
   </script>
 </body>
 </html>
+
 
 
 
